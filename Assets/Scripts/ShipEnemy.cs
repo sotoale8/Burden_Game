@@ -32,7 +32,6 @@ public class ShipEnemy : MonoBehaviour
     {   
         
         
-        acercamiento=captainShip.transform.position-transform.position;
         movement.x=(captainShip.transform.position-transform.position).normalized.x* aproachSpeed;
         if (!sinkingEnable)
         {
