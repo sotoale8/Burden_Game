@@ -24,7 +24,6 @@ public class ShipEnemy : MonoBehaviour
         isWind=true;
         sailAnimator.SetBool("isWind",isWind);
         
-        acercamiento=captainShip.transform.position-transform.position;
         movement.x=(captainShip.transform.position-transform.position).normalized.x* aproachSpeed;
         movement.y=0.7f*Mathf.Cos(1.0f+Time.time/0.7f);
         movement.z=0f;
