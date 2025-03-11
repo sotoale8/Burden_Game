@@ -41,25 +41,4 @@ public class Shipmovement : MonoBehaviour
            
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-       if (collision.gameObject.CompareTag("Captain"))
-            {
-                collision.transform.SetParent(this.transform);
-            }  
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-         if (collision.gameObject.CompareTag("Captain"))
-            {   
-                StartCoroutine(ChangeParent(collision.gameObject.transform));
-            }  
-    }
-
-    IEnumerator ChangeParent(Transform captain)
-    {
-        yield return null;
-        captain.transform.SetParent(null);
-    }
 }

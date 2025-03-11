@@ -8,6 +8,8 @@ public class CaptainMovement : MonoBehaviour
     private Transform captainTransform;
     private Vector3 captainScale;
 
+    private float currentMoveSpeed;
+    private float   currentJumpForce; 
     private float horizontal;
     private float vertical;
     public bool isGrounded;
@@ -24,6 +26,9 @@ public class CaptainMovement : MonoBehaviour
         animator=GetComponent<Animator>();
         captainTransform=GetComponent<Transform>();
         captainScale= transform.localScale;
+        currentMoveSpeed=runMovementSpeed;
+        currentJumpForce=jumpForce;
+
     }
 
     // Update is called once per frame
@@ -41,19 +46,14 @@ public class CaptainMovement : MonoBehaviour
                 
             }
         
-        CheckGround();
-       
-                
-        
-         
-            
+        CheckGround();       
     }
 
     void FixedUpdate()
     {
         running = horizontal!=0;      
         animator.SetBool("running",running && isGrounded);
-        captainRb.linearVelocity=new Vector2(horizontal*runMovementSpeed,captainRb.linearVelocityY);
+        captainRb.linearVelocity=new Vector2(horizontal*currentMoveSpeed,captainRb.linearVelocityY);
         Jump();
 
 
@@ -63,7 +63,7 @@ public class CaptainMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
-            captainRb.AddForce(Vector2.up*jumpForce,ForceMode2D.Impulse);    
+            captainRb.AddForce(Vector2.up*currentJumpForce,ForceMode2D.Impulse);    
             jumped=true; 
             animator.SetBool("jumped",jumped);
              
@@ -77,6 +77,19 @@ public class CaptainMovement : MonoBehaviour
         jumped=!isGrounded;
         animator.SetBool("jumped",jumped);
         animator.SetBool("isGrounded",isGrounded);
+    }
+
+    public void ReduceSpeedAndJump(float speedReduction, float jumpReduction)
+    {
+        currentMoveSpeed = speedReduction;
+        currentJumpForce = jumpReduction;
+    }
+
+    // Método para restaurar velocidad y salto
+    public void RestoreSpeedAndJump(float speedRestore, float jumpRestore)
+    {
+        currentMoveSpeed= speedRestore;
+        currentJumpForce = jumpRestore;
     }
 
 }
