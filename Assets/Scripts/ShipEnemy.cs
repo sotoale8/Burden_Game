@@ -15,6 +15,7 @@ public class ShipEnemy : MonoBehaviour
     public Vector3 acercamiento;
     [SerializeField]private bool sinkingEnable=false;
     [SerializeField] private float sinkingVelocity;
+     CaptainMovement player;
     
     void Start()
     {
@@ -24,6 +25,7 @@ public class ShipEnemy : MonoBehaviour
         
         sailAnimator= transform.GetChild(1).GetComponentInChildren<Animator>();
         sailAnimator.SetBool("isWind",true);
+        player= GameObject.Find("Captain").GetComponent<CaptainMovement>(); 
 
     }
 
@@ -32,8 +34,7 @@ public class ShipEnemy : MonoBehaviour
     {   
         
         
-        movement.x=(captainShip.transform.position-transform.position).normalized.x* aproachSpeed;
-        if (!sinkingEnable)
+         if (!sinkingEnable)
         {
             movement.y=0.7f*Mathf.Cos(1.0f+Time.time/0.7f);
         }
@@ -44,7 +45,7 @@ public class ShipEnemy : MonoBehaviour
    
         CheckCaptain();
         if(CheckCaptain()!=null && Input.GetKeyDown(KeyCode.E)) 
-            {
+        {
               transform.GetChild(2).gameObject.SetActive(true);
               burdenAnchor.SetActive(false);
               
@@ -54,6 +55,9 @@ public class ShipEnemy : MonoBehaviour
             movement.y=-sinkingVelocity;
             sailAnimator.SetBool("isWind",false);
             }
+
+        player.RestoreSpeedAndJump(5 , 500);
+
        }
     
 
