@@ -1,8 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
-    public float fallDelay = 1f; // Tiempo antes de que la plataforma comience a caer
+    private float fallDelay = 1f; // Tiempo antes de que la plataforma comience a caer
     public float fallSpeed = 5f; // Velocidad a la que la plataforma cae
     public float returnSpeed = 5f; // Velocidad a la que la plataforma regresa a su posición inicial
 
@@ -53,5 +54,10 @@ public class FallingPlatform : MonoBehaviour
         }
     }
    
+     private IEnumerator PlatformDelay()
+    {
+        yield return new WaitForSeconds(fallDelay);
+   
+    }
     
 }
