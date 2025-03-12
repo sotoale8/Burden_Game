@@ -24,7 +24,7 @@ public class OptionMenu : MonoBehaviour
     }
     void Start()
     {
-        // Asignar los métodos a los eventos de cambio de valor de los sliders
+        // Asignar los mï¿½todos a los eventos de cambio de valor de los sliders
         fxSlider.onValueChanged.AddListener(SetFxVolume); 
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         generalSlider.onValueChanged.AddListener(SetGeneralVolume);
@@ -67,7 +67,7 @@ public class OptionMenu : MonoBehaviour
         }
     }
 
-    // Método para ajustar el volumen de la música
+    // Mï¿½todo para ajustar el volumen de la mï¿½sica
     public void SetMusicVolume(float volume)
     {
         Debug.Log($"Setting Music Volume: {volume}");
@@ -78,7 +78,7 @@ public class OptionMenu : MonoBehaviour
             PlayerPrefs.SetFloat("MusicVolume", volume); // Guarda el valor
         }
     }
-    // Método para ajustar el volumen del general
+    // Mï¿½todo para ajustar el volumen del general
     public void SetGeneralVolume(float volume)
     {
         Debug.Log($"Setting General Volume: {volume}");
@@ -91,7 +91,7 @@ public class OptionMenu : MonoBehaviour
     }
     public void clicSound()
     {
-        AudioManager.Instance.PlayFX("start");
+        AudioManager.Instance.PlayFX("Select");
     }
 
     public void exitMenu()
