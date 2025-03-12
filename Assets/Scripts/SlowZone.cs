@@ -18,6 +18,7 @@ public class SlowZone : MonoBehaviour
                 player.ReduceSpeedAndJump(speedReduction, jumpReduction);
                 burdenAnchor.SetActive(true);
                 transform.gameObject.GetComponent<BoxCollider2D>().enabled=false;
+                AudioManager.Instance.PlayFX("debuff");
             }
         }
     }

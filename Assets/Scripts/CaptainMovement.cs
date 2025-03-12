@@ -78,6 +78,7 @@ public class CaptainMovement : MonoBehaviour
             captainRb.AddForce(Vector2.up*currentJumpForce,ForceMode2D.Impulse);    
             jumped=true; 
             animator.SetBool("jumped",jumped);
+            AudioManager.Instance.PlayFX("jump");
           
         }
 
