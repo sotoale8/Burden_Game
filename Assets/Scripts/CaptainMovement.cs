@@ -73,7 +73,7 @@ public class CaptainMovement : MonoBehaviour
 
     private void CheckGround()
     {
-        isGrounded=Physics2D.Raycast(checkGroundPos.position,Vector2.down,0.05f);
+        isGrounded=Physics2D.Raycast(checkGroundPos.position,Vector2.down,0.02f);
         jumped=!isGrounded;
         animator.SetBool("jumped",jumped);
         animator.SetBool("isGrounded",isGrounded);
@@ -89,7 +89,7 @@ public class CaptainMovement : MonoBehaviour
     public void RestoreSpeedAndJump(float speedRestore, float jumpRestore)
     {
         currentMoveSpeed= speedRestore;
-        currentJumpForce = jumpRestore;
+        currentJumpForce= jumpRestore;
     }
 
 }
