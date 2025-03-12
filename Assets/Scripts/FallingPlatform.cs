@@ -1,70 +1,57 @@
-using System.Collections;
 using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
-    public float fallDelay = 1f; 
-    public float respawnSpeed = 2f;
+    public float fallDelay = 1f; // Tiempo antes de que la plataforma comience a caer
+    public float fallSpeed = 5f; // Velocidad a la que la plataforma cae
+    public float returnSpeed = 5f; // Velocidad a la que la plataforma regresa a su posición inicial
 
-    private Vector3 startPosition; 
-    private Rigidbody2D rb;
+    private Vector3 startPosition; // Posición inicial de la plataforma
     private bool isFalling = false;
-    private bool isResetting = false;
+    private bool isReturning = false;
+    private CaptainMovement player;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        startPosition = transform.position; // Guardamos el dato de la posicion inicial
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        startPosition = transform.position; // Guarda la posición inicial
+        player=GameObject.Find("Captain").GetComponent<CaptainMovement>();
+    }
+
+    void Update()
+    {
+        if (isFalling)
+        {
+            transform.Translate(Vector2.down * fallSpeed * Time.deltaTime);
+        }
+        else{
+            transform.position = Vector2.MoveTowards(transform.position, startPosition, returnSpeed * Time.deltaTime);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.gameObject.CompareTag("Captain") && !isFalling && !isResetting)
+        // Si el jugador colisiona con la plataforma y no está cayendo ni regresando
+        if (collision.gameObject.CompareTag("Captain"))
         {
-            collision.gameObject.transform.SetParent(transform);
-            Invoke("StartFalling", fallDelay); // Inicia la caída después de un retraso
+            Debug.Log("entraron en colision");
+            collision.collider.gameObject.transform.SetParent(transform);
+            isFalling = true;
+            player.onPlatform=true;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        
-        if (collision.gameObject.CompareTag("Captain") && isFalling)
-        {   
-            collision.gameObject.transform.SetParent(null);
-            ResetPlatform(); // Reinicia la plataforma
-        }
-    }
-
-    private void StartFalling()
-    {
-        isFalling = true;
-        rb.bodyType = RigidbodyType2D.Dynamic; // Qutamos el kinematico para que active la gravedad
-    }
-
-    private void ResetPlatform()
-    {
-        isFalling = false;
-        isResetting = true;
-        rb.linearVelocity = Vector2.zero; // Detiene el movimiento
-        rb.bodyType = RigidbodyType2D.Kinematic; // Desactiva la gravedad
-
-        StartCoroutine(ReturnToStartPosition()); // Inicia el movimiento gradual
-    }
-
-    private IEnumerator ReturnToStartPosition()
-    {
-        while (Vector3.Distance(transform.position, startPosition) > 0.1f)
+        // Si el jugador deja de colisionar con la plataforma y esta está cayendo
+        if (collision.gameObject.CompareTag("Captain"))
         {
-            // Mueve la plataforma gradualmente hacia su posición inicial
-            transform.position = Vector3.MoveTowards(transform.position, startPosition, respawnSpeed * Time.deltaTime);
-            yield return null; // Espera al siguiente frame
+            Debug.Log("Salieron de colision");
+             collision.collider.gameObject.transform.SetParent(null);
+            isFalling = false;
+            player.onPlatform=false;
+            
         }
-
-        // Asegura que la plataforma esté exactamente en la posición inicial
-        transform.position = startPosition;
-        isResetting = false;
     }
+   
+    
 }
