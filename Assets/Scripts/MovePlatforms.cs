@@ -50,7 +50,7 @@ public class MovePlatforms : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         // Si el jugador deja de colisionar con la plataforma y esta está cayendo
-        if (collision.gameObject.CompareTag("Captain"))
+        if (collision.gameObject.CompareTag("Captain") && player.jumped)
         {
             Debug.Log("Captain out");
             collision.collider.gameObject.transform.SetParent(null);

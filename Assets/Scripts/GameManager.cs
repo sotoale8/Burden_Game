@@ -43,7 +43,7 @@ public static GameManager Instance {  get; private set; }
         }
         else
         {
-            Debug.LogWarning("No hay más escenas. ¡Has completado el juego!");
+            Debug.LogWarning("No hay mï¿½s escenas. ï¿½Has completado el juego!");
             ReloadCurrentScene(); // Recargar la primera escena
         }
     }

@@ -6,8 +6,7 @@ public class CaptainMovement : MonoBehaviour
     private Rigidbody2D captainRb;
     private Animator animator;
     private Transform captainTransform;
-    private Vector3 captainScale;
-
+    private Vector3 captainScale;    
     private float currentMoveSpeed;
     private float   currentJumpForce; 
     private float horizontal;
@@ -20,6 +19,8 @@ public class CaptainMovement : MonoBehaviour
     [SerializeField] float runMovementSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] Transform checkGroundPos;
+
+    public LayerMask groundMask;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,6 +48,11 @@ public class CaptainMovement : MonoBehaviour
                 transform.localScale=new Vector3(-captainScale.x,captainScale.y,captainScale.z);    
                 
             }
+
+        if(transform.position.y<-15)
+        {
+          GameManager.Instance.ReloadCurrentScene();      
+        }    
         
     }
 
