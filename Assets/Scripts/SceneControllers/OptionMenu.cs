@@ -91,7 +91,7 @@ public class OptionMenu : MonoBehaviour
     }
     public void clicSound()
     {
-        AudioManager.Instance.PlayFX("start");
+        AudioManager.Instance.PlayFX("Select");
     }
 
     public void exitMenu()
