@@ -9,10 +9,12 @@ public class FallingPlatform : MonoBehaviour
     private Vector3 startPosition; // Posición inicial de la plataforma
     private bool isFalling = false;
     private bool isReturning = false;
+    private CaptainMovement player;
 
     void Start()
     {
         startPosition = transform.position; // Guarda la posición inicial
+        player=GameObject.Find("Captain").GetComponent<CaptainMovement>();
     }
 
     void Update()
@@ -34,6 +36,7 @@ public class FallingPlatform : MonoBehaviour
             Debug.Log("entraron en colision");
             collision.collider.gameObject.transform.SetParent(transform);
             isFalling = true;
+            player.onPlatform=true;
         }
     }
 
@@ -45,6 +48,8 @@ public class FallingPlatform : MonoBehaviour
             Debug.Log("Salieron de colision");
              collision.collider.gameObject.transform.SetParent(null);
             isFalling = false;
+            player.onPlatform=false;
+            
         }
     }
    

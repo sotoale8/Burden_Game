@@ -15,6 +15,8 @@ public class CaptainMovement : MonoBehaviour
     public bool isGrounded;
     public bool running;
     public bool jumped;
+
+    public  bool onPlatform;
     [SerializeField] float runMovementSpeed;
     [SerializeField] float jumpForce;
     [SerializeField] Transform checkGroundPos;
@@ -63,10 +65,14 @@ public class CaptainMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
+            if(onPlatform)
+            {
+               captainRb.linearVelocityY=0;     
+            }
             captainRb.AddForce(Vector2.up*currentJumpForce,ForceMode2D.Impulse);    
             jumped=true; 
             animator.SetBool("jumped",jumped);
-             
+          
         }
 
     }
