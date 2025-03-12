@@ -6,11 +6,14 @@ public class MoveHorizontalPlatform : MonoBehaviour
     public float distance = 5f; // Distancia máxima que la plataforma se moverá desde su posición inicial
     private Vector3 startPosition; // Posición inicial de la plataforma
     private bool movingLeft = true; // Dirección del movimiento
+    private CaptainMovement player;
 
     void Start()
     {
         // Guardar la posición inicial de la plataforma
         startPosition = transform.position;
+       player=GameObject.Find("Captain").GetComponent<CaptainMovement>();
+
     }
 
     void Update()
@@ -42,23 +45,26 @@ public class MoveHorizontalPlatform : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Verificar si el objeto que colisiona tiene el tag "Player"
+        // Si el jugador deja de colisionar con la plataforma y esta está cayendo
         if (collision.gameObject.CompareTag("Captain"))
         {
-            // Hacer que el jugador sea hijo de la plataforma
-            collision.transform.SetParent(transform);
+            Debug.Log("Captain in");
+            collision.collider.gameObject.transform.SetParent(transform);
+            player.onPlatform=true;
+            
         }
     }
-
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        // Verificar si el objeto que deja de colisionar tiene el tag "Player"
+        // Si el jugador deja de colisionar con la plataforma y esta está cayendo
         if (collision.gameObject.CompareTag("Captain"))
         {
-            // Restaurar la jerarquía original del jugador
-            collision.transform.SetParent(null);
+            Debug.Log("Captain out");
+            collision.collider.gameObject.transform.SetParent(null);
+            player.onPlatform=false;
+            
         }
     }
 }

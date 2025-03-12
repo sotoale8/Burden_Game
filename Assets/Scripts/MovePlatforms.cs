@@ -41,7 +41,7 @@ public class MovePlatforms : MonoBehaviour
         // Si el jugador deja de colisionar con la plataforma y esta está cayendo
         if (collision.gameObject.CompareTag("Captain"))
         {
-            Debug.Log("Salieron de colision");
+            Debug.Log("Captain in");
             collision.collider.gameObject.transform.SetParent(transform);
             player.onPlatform=true;
             
@@ -52,7 +52,7 @@ public class MovePlatforms : MonoBehaviour
         // Si el jugador deja de colisionar con la plataforma y esta está cayendo
         if (collision.gameObject.CompareTag("Captain"))
         {
-            Debug.Log("Salieron de colision");
+            Debug.Log("Captain out");
             collision.collider.gameObject.transform.SetParent(null);
             player.onPlatform=false;
             

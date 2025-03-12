@@ -5,18 +5,19 @@ public class ShootCannon : MonoBehaviour
     public GameObject bulletPrefab; // Prefab de la bala
     public Transform firePoint; // Punto de disparo
     public float bulletForce = 20f; // Fuerza del disparo
-    public float fireRate = 1.5f; // Tiempo entre disparos en segundos
-    private float nextFireTime = 0f;
+    private float fireRate = 3f; // Tiempo entre disparos en segundos
+    private float nextFireTime = 5f;
     private bool targetOn = false;
     private CaptainMovement player;
     void Start()
     {
          player=GameObject.Find("Captain").GetComponent<CaptainMovement>();
+         firePoint=transform.GetChild(0);
     }
 
     void Update()
     {
-        if (targetOn && Time.time >= nextFireTime)
+        if (Time.time >= nextFireTime)
         {
             ShootBullet();
             nextFireTime = Time.time + fireRate;
@@ -34,8 +35,8 @@ public class ShootCannon : MonoBehaviour
         // Aplicar una fuerza en la dirección izquierda
         rb.linearVelocity = Vector2.left * bulletForce;
 
-        // Destruir la bala después de 2 segundos
-        Destroy(bullet, 2f);
+        // Destruir la bala después de 1 segundos
+        Destroy(bullet, 1f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
