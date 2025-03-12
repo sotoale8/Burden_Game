@@ -7,10 +7,12 @@ public class MovePlatforms : MonoBehaviour
 
     private Vector3 startPosition; 
     private bool movingUp = true; 
+    private CaptainMovement player;
 
     void Start()
     {
         startPosition = transform.position; 
+        player=GameObject.Find("Captain").GetComponent<CaptainMovement>();
     }
 
     void Update()
@@ -32,5 +34,28 @@ public class MovePlatforms : MonoBehaviour
 
         // Aplica el nuevo valor de Y al transform
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Si el jugador deja de colisionar con la plataforma y esta está cayendo
+        if (collision.gameObject.CompareTag("Captain"))
+        {
+            Debug.Log("Salieron de colision");
+            collision.collider.gameObject.transform.SetParent(transform);
+            player.onPlatform=true;
+            
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        // Si el jugador deja de colisionar con la plataforma y esta está cayendo
+        if (collision.gameObject.CompareTag("Captain"))
+        {
+            Debug.Log("Salieron de colision");
+            collision.collider.gameObject.transform.SetParent(null);
+            player.onPlatform=false;
+            
+        }
     }
 }

@@ -42,7 +42,6 @@ GameObject:
   - component: {fileID: 7054069365447999746}
   - component: {fileID: 9131184322899308564}
   - component: {fileID: 8079036774210775156}
-  - component: {fileID: 287572939089964459}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -143,19 +142,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &287572939089964459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4219610513155235068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cb9efb75346d470e8bb7cc3e76ecf09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cannoBallPrefab: {fileID: 6900991842363411485, guid: 511b8dc690c90438c8b02e84ff8853d3, type: 3}
-  rotationAngle: 5
-  rotate: 0
-  rotate2: 0
