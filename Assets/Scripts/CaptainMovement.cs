@@ -47,6 +47,11 @@ public class CaptainMovement : MonoBehaviour
                 transform.localScale=new Vector3(-captainScale.x,captainScale.y,captainScale.z);    
                 
             }
+
+        if(transform.position.y<-15)
+        {
+          GameManager.Instance.ReloadCurrentScene();      
+        }    
         
     }
 
