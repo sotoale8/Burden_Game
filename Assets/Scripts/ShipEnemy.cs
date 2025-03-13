@@ -32,7 +32,10 @@ public class ShipEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        
+        if(transform.position.y<-12f)
+        {
+            GameManager.Instance.LoadSceneByName("Win");
+        }
         
          if (!sinkingEnable)
         {
@@ -44,7 +47,7 @@ public class ShipEnemy : MonoBehaviour
         
    
         CheckCaptain();
-        if(CheckCaptain()!=null && Input.GetKeyDown(KeyCode.E)) 
+        if(CheckCaptain()!=null) 
         {
               transform.GetChild(2).gameObject.SetActive(true);
               burdenAnchor.SetActive(false);
@@ -66,7 +69,7 @@ public class ShipEnemy : MonoBehaviour
 
     private Collider2D CheckCaptain()
     {
-     return Physics2D.OverlapCircle(anchor.position,1.5f,playerMask);
+     return Physics2D.OverlapCircle(anchor.position,2f,playerMask);
        
     }
 

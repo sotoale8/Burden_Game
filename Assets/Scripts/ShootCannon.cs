@@ -20,6 +20,7 @@ public class ShootCannon : MonoBehaviour
         if (Time.time >= nextFireTime)
         {
             ShootBullet();
+            AudioManager.Instance.PlayFX("cannon");
             nextFireTime = Time.time + fireRate;
         }
     }
