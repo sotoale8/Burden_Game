@@ -59,10 +59,10 @@ public class CaptainMovement : MonoBehaviour
     void FixedUpdate()
     {
         CheckGround();       
+        Jump();
         running = horizontal!=0;      
         animator.SetBool("running",running && isGrounded);
         captainRb.linearVelocity=new Vector2(horizontal*currentMoveSpeed,captainRb.linearVelocityY);
-        Jump();
 
 
     }   

@@ -3334,12 +3334,20 @@ PrefabInstance:
       value: -0.111
       objectReference: {fileID: 0}
     - target: {fileID: 7391038306530918834, guid: 552c70c33120743b293e0e566caa6439, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8.3456
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391038306530918834, guid: 552c70c33120743b293e0e566caa6439, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8.6536
+      objectReference: {fileID: 0}
+    - target: {fileID: 7391038306530918834, guid: 552c70c33120743b293e0e566caa6439, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -55.8
+      value: -55.6894
       objectReference: {fileID: 0}
     - target: {fileID: 7391038306530918834, guid: 552c70c33120743b293e0e566caa6439, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -3.3693
       objectReference: {fileID: 0}
     - target: {fileID: 7391038306530918834, guid: 552c70c33120743b293e0e566caa6439, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3876,8 +3884,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.22, y: 0.17}
+  m_Offset: {x: 0, y: -0.0034291863}
+  m_Size: {x: 0.22000001, y: 0.2920123}
   m_Direction: 0
 --- !u!212 &839904788
 SpriteRenderer:
