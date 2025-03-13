@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.Mathematics;
-using UnityEditor.SearchService;
 
 public class Timer : MonoBehaviour
 {
